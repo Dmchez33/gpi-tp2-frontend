@@ -1,0 +1,98 @@
+<div class="container">
+    <div class="d-flex justify-content-between">
+        <div class="p-2">
+            <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">
+                <mat-icon>add_box</mat-icon>
+                Ajouter
+            </button>
+        </div>
+        
+    </div>
+
+    <div class="container mt-5">
+        <h3 class="text-center mb-3">Liste des Problemes</h3>
+
+
+        <table class="table table-bordered table-hover mat-elevation-z8 table-sm">
+            <thead class="table-dark">
+                <tr>
+                    <th>Description</th>
+                    <th>Date Probleme</th>
+                    <th>Propriétaire PC </th>
+                    <th *ngIf="isTechnicien">Action</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let probleme of problemes">
+
+                    <td> {{probleme.description}}</td>
+                    <td> {{probleme.dateProbleme}}</td>
+                    <td> {{probleme.ordinateur.proprietaire}} </td>
+                    
+                    <td class="d-flex justify-content-between" *ngIf="isTechnicien">
+                        <button  type="button" class="btn  btn-outline-success btn-sm" routerLink="{{probleme.id}}">
+                            <mat-icon>visibility</mat-icon>
+                        </button>
+
+                       
+                    </td>
+
+
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-lg modal-dialog modal-dialog-centered  modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Formulaire d'Ajout Problème</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form [formGroup]="problemeForm" (ngSubmit)="onSubmit()" class="row" >
+                            
+                            <div class="mb-3 col-6">
+                                <label for="description" class="form-label">Description <span class="etoile">*</span> </label>
+                                <input type="text" class="form-control" id="description"
+                                    formControlName="description" placeholder="Moussa">
+                            </div>
+                            
+                            <div class="mb-3 col-6">
+                                <label for="dateProbleme" class="form-label">Date Installation <span class="etoile">*</span> </label>
+                                <input type="date" class="form-control" id="dateProbleme"
+                                    formControlName="dateProbleme">
+                            </div>
+                            <div class="mb-3 col-12">
+                                <label for="ordinateur" class="form-label">Ordinateur <span class="etoile">*</span> </label>
+                                <select class="form-select" id="ordinateur" formControlName="ordinateur">
+                                    
+                                    <option *ngFor="let ordinateur of ordinateurs" [value]="ordinateur.id">{{
+                                        ordinateur.proprietaire }}
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="d-grid gap-2 col-6 mx-auto">
+                                <button type="submit" class="btn btn-primary" [disabled]="problemeForm.invalid"
+                                    >Enregistrer</button>
+                            </div>
+
+
+
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,52 @@
+.body{
+    background-color: rgb(197, 197, 243);
+    height: 100%;
+    color: white;
+}
+.h2-style{
+    text-shadow: 1px 2px 4px black;
+}
+
+.login-container {
+    max-width: 400px;
+    min-width: 400px;
+    // margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgb(42, 42, 42);
+    background-color: rgb(103, 103, 223) !important;
+}
+
+.login-container h2 {
+    text-align: center;
+}
+
+.login-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-container label {
+    margin-top: 10px;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 5px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.login-container button {
+    height: 40px;
+    margin-top: 30px;
+    color: white;
+    background-color: blue;
+    border-radius: 100px;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}

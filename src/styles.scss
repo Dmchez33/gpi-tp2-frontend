@@ -1,1 +1,129 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$groupe-5-frontend-primary: mat.define-palette(mat.$indigo-palette);
+$groupe-5-frontend-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$groupe-5-frontend-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$groupe-5-frontend-theme: mat.define-light-theme((color: (primary: $groupe-5-frontend-primary,
+        accent: $groupe-5-frontend-accent,
+        warn: $groupe-5-frontend-warn,
+      )));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($groupe-5-frontend-theme);
+
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: white !important;
+}
+
+.tab1 {
+  background-color: #D9D9D9 !important;
+  padding: 0px !important;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, .25);
+  border-radius: 0px !important;
+
+}
+
+.butn3 {
+  height: 40px !important;
+  width: 49% !important;
+  border-radius: 0px !important;
+  background-color: #D9D9D9 !important;
+  font-size: large;
+  font-weight: 500;
+  letter-spacing: 2px;
+  margin: 0px !important;
+  padding: 2px;
+  /* padding-left: 2px; */
+  color: rgb(0, 0, 0);
+
+}
+
+.butn3.active {
+  background-color: blue !important;
+  color: white !important;
+  /* border-bottom: 2px solid #2F6195 !important; */
+
+
+}
+
+.modal-backdrop {
+  --bs-backdrop-zindex: 0;
+  --bs-backdrop-bg: #000;
+  --bs-backdrop-opacity: 0.5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--bs-backdrop-zindex);
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bs-backdrop-bg);
+}
+
+.modal-title {
+  text-align: center !important;
+  text-shadow: 1px 1px 1px blue;
+  font-size: medium;
+}
+
+.modal-content {
+  border: 3px solid rgb(147, 147, 225) !important;
+  box-shadow: 0 0 1000em rgba(0, 0, 0, 0.50) !important;
+  // height: 500px !important;
+  border-radius: 0px !important;
+
+}
+
+.btn-sm {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+}
+h3{
+  text-align: center;
+  letter-spacing: 3px;
+  text-shadow: 0px 0px 2px silver;
+}
+table {
+  width: 100% !important;
+}
+
+
+
+.mat-elevation-z8 {
+  box-shadow: 0 5px 5px -3px rgba(249, 0, 0, 0.2), 0 2px 1px 1px rgba(0, 0, 0, 0.14), 0 1px 2px 2px rgba(0, 0, 0, 0.12) !important;
+}
+#splash-screen.hidden {
+  display: none;
+
+}
+.etoile{
+  color:red !important;
+}
