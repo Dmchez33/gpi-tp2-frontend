@@ -1,138 +1,136 @@
 <div class="container">
+    <!-- Barre de navigation et bouton de retour -->
     <div class="d-flex justify-content-between">
         <div class="p-2">
+            <!-- Bouton de retour -->
             <button type="button" class="btn btn-outline-primary btn-sm" (click)="goback()">
                 <mat-icon>arrow_back</mat-icon>
                 Retour
             </button>
         </div>
-
     </div>
 
+    <!-- Contenu principal avec détails du problème et onglets -->
     <div class="d-flex align-items-start">
+        <!-- Image et détails du problème -->
         <div class="flex-shrink-0">
             <img src="../../../assets/depannage.png" width="256" alt="...">
             <div>
+                <!-- Description du problème -->
                 <span class="fs-6">Description Problème : </span> {{detailProbleme.description}}
             </div>
             <div class="d-flex justify-content-between">
-
+                <!-- Bouton d'édition du problème -->
                 <button type="button" class="btn btn-outline-secondary btn-sm">
                     <mat-icon>edit</mat-icon>
                 </button>
-
             </div>
         </div>
+
+        <!-- Onglets de solutions et d'interventions -->
         <div class="flex-grow-1 ms-3 mt-4">
-
             <div class="tab1 nav nav-pills p-1 d-flex justify-content-between" id="pills-tab" role="tablist">
-
+                <!-- Onglet Solutions -->
                 <button class="nav-link active butn3" id="v-pills-solution-tab" data-bs-toggle="pill"
                     data-bs-target="#v-pills-solution" type="button" role="tab" aria-controls="v-pills-solution"
-                    aria-selected="true">Solutions </button>
+                    aria-selected="true">Solutions</button>
+                <!-- Onglet Interventions -->
                 <button class="nav-link butn3" id="v-pills-maCate-tab" data-bs-toggle="pill"
-                    data-bs-target="#v-pills-Intervation" type="button" role="tab" aria-controls="v-pills-Intervation"
-                    aria-selected="false">Intervations</button>
-
+                    data-bs-target="#v-pills-Intervention" type="button" role="tab" aria-controls="v-pills-Intervention"
+                    aria-selected="false">Interventions</button>
             </div>
 
+            <!-- Contenu des onglets -->
             <div class="tab-content" id="pills-tabContent">
+                <!-- Onglet Solutions -->
                 <div class="tab-pane fade show active" id="v-pills-solution" role="tabpanel"
                     aria-labelledby="pills-solution-tab" tabindex="0">
-                    <h3 class="text-center mb-1 mt-2">Liste des Solution</h3>
+                    <h3 class="text-center mb-1 mt-2">Liste des Solutions</h3>
                     <div class="d-flex justify-content-between">
                         <div class="p-2">
+                            <!-- Bouton d'ajout de solution -->
                             <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal"
                                 data-bs-target="#addSolutionModal">
                                 <mat-icon>add_box</mat-icon>
                                 Ajouter Solution
                             </button>
                         </div>
-
                     </div>
 
-
+                    <!-- Tableau des solutions -->
                     <table class="table table-bordered table-hover mat-elevation-z8 table-sm">
                         <thead class="table-dark">
                             <tr>
                                 <th>Diagnostic</th>
                                 <th>Action</th>
                                 <th>Durée Moyenne</th>
-
                                 <th>Opération</th>
-
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let solution of solutionListByProbleme">
-
                                 <td> {{solution.diagnostic}} </td>
                                 <td> {{solution.action}} </td>
-
                                 <td> {{solution.dureeMoyenne}} </td>
                                 <td class="d-flex justify-content-center">
-                                    <button type="button" class="btn  btn-outline-success btn-sm"
+                                    <!-- Bouton de vue de solution -->
+                                    <button type="button" class="btn btn-outline-success btn-sm"
                                         routerLink="/ordinateur-detail">
                                         <mat-icon>visibility</mat-icon>
                                     </button>
                                 </td>
-
-
                             </tr>
                         </tbody>
                     </table>
-
                 </div>
-                <div class="tab-pane fade" id="v-pills-Intervation" role="tabpanel"
-                    aria-labelledby="pills-Intervation-tab" tabindex="0">
+
+                <!-- Onglet Interventions -->
+                <div class="tab-pane fade" id="v-pills-Intervention" role="tabpanel"
+                    aria-labelledby="pills-Intervention-tab" tabindex="0">
                     <h3 class="text-center mb-1 mt-2">Liste des Interventions</h3>
                     <div class="d-flex justify-content-between">
                         <div class="p-2">
+                            <!-- Bouton d'ajout d'intervention -->
                             <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal"
                                 data-bs-target="#addInterventionModal">
                                 <mat-icon>add_box</mat-icon>
                                 Ajouter Intervention
                             </button>
                         </div>
-
                     </div>
 
+                    <!-- Tableau des interventions -->
                     <table class="table table-bordered table-hover mat-elevation-z8 table-sm">
                         <thead class="table-dark">
                             <tr>
                                 <th>Date Intervention</th>
                                 <th>Durée Intervention</th>
                                 <th>Action</th>
-
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let intervention of interventionListByProbleme">
-
-                                <!-- <td> {{intervention.id}} </td> -->
                                 <td> {{intervention.dateIntervention}} </td>
                                 <td> {{intervention.dureeIntervention}} Min </td>
                                 <td class="d-flex justify-content-center">
-                                    <button type="button" class="btn  btn-outline-success btn-sm"
+                                    <!-- Bouton de vue d'intervention -->
+                                    <button type="button" class="btn btn-outline-success btn-sm"
                                         routerLink="/ordinateur-detail">
                                         <mat-icon>visibility</mat-icon>
                                     </button>
-
                                 </td>
-
-
                             </tr>
                         </tbody>
                     </table>
                 </div>
-
             </div>
         </div>
     </div>
 
-
+    <!-- Modaux pour l'ajout de solution et d'intervention -->
     <div class="modal fade" id="addSolutionModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="addInterventionModalLabel" aria-hidden="true">
+        <!-- Modal pour l'ajout de solution -->
         <div class="modal-lg modal-dialog modal-dialog-centered  modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
@@ -140,6 +138,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <!-- Formulaire d'ajout de solution -->
                     <form [formGroup]="solutionForm" (ngSubmit)="onSubmitSolution(idProbleme)" class="row">
                         <div class="mb-3 col-6">
                             <label for="diagnostic" class="form-label">Diagnostic <span class="etoile">*</span> </label>
@@ -157,25 +156,19 @@
                             <input type="number" class="form-control" id="dureeMoyenne" formControlName="dureeMoyenne"
                                 placeholder="60 minute">
                         </div>
-
-
                         <div class="d-grid gap-2 col-6 mx-auto">
                             <button type="submit" class="btn btn-primary"
                                 [disabled]="solutionForm.invalid">Enregistrer</button>
                         </div>
-
-
-
-
                     </form>
                 </div>
-
             </div>
         </div>
     </div>
 
     <div class="modal fade" id="addInterventionModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="addInterventionModalLabel" aria-hidden="true">
+        <!-- Modal pour l'ajout d'intervention -->
         <div class="modal-lg modal-dialog modal-dialog-centered  modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
@@ -183,6 +176,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <!-- Formulaire d'ajout d'intervention -->
                     <form [formGroup]="interventionForm" (ngSubmit)="onSubmitIntervention(idProbleme)" class="row">
                         <div class="mb-3 col-6">
                             <label for="dateIntervention" class="form-label">Date Intervention <span
@@ -199,6 +193,7 @@
                         <div class="mb-3 col-12">
                             <label for="solution" class="form-label">Solution <span class="etoile">*</span> </label>
                             <select class="form-select" id="solution" formControlName="solution">
+                                <!-- Options dynamiques pour le choix de la solution -->
                                 <option *ngFor="let solution of solutionListByProbleme" [value]="solution.id">{{
                                     solution.diagnostic }}
                                 </option>
@@ -208,15 +203,9 @@
                             <button type="submit" class="btn btn-primary"
                                 [disabled]="interventionForm.invalid">Enregistrer</button>
                         </div>
-
-
-
-
                     </form>
                 </div>
-
             </div>
         </div>
     </div>
-
 </div>

@@ -1,105 +1,95 @@
 <div class="container">
+    <!-- Bouton pour ouvrir le modal d'ajout d'ordinateur -->
     <div class="d-flex justify-content-between">
         <div class="p-2">
             <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal"
                 data-bs-target="#exampleModal">
-                <mat-icon>add_box</mat-icon>
+                <mat-icon>add_box</mat-icon> <!-- Icone pour ajouter -->
                 Ajouter
             </button>
         </div>
     </div>
 
+    <!-- Titre de la section -->
     <div class="container mt-5">
         <h3 class="text-center mb-3">Liste des Ordinateurs</h3>
 
-
+        <!-- Tableau affichant les ordinateurs -->
         <table class="table table-bordered table-hover mat-elevation-z8 table-sm">
             <thead class="table-dark">
                 <tr>
                     <th>Bureau</th>
                     <th>Propriétaire</th>
                     <th>Type SE</th>
-                    <th>Date installation </th>
+                    <th>Date installation</th>
                     <th>Caractéristique</th>
                     <th>Opération</th>
-
                 </tr>
             </thead>
             <tbody>
+                <!-- Boucle sur chaque ordinateur pour afficher les détails -->
                 <tr *ngFor="let ordinateur of ordinateurs">
-
-                    <td> {{ordinateur.bureau}} </td>
-                    <td> {{ordinateur.proprietaire}} </td>
-                    <td> {{ordinateur.typeSE}} </td>
-                    <td> {{ordinateur.dateInstall}} </td>
-                    <td> {{ordinateur.caracteristiques}} </td>
-                    
+                    <td>{{ ordinateur.bureau }}</td>
+                    <td>{{ ordinateur.proprietaire }}</td>
+                    <td>{{ ordinateur.typeSE }}</td>
+                    <td>{{ ordinateur.dateInstall }}</td>
+                    <td>{{ ordinateur.caracteristiques }}</td>
                     <td class="d-flex justify-content-between">
-                        <button  type="button" class="btn  btn-outline-success btn-sm" routerLink="{{ordinateur.id}}">
+                        <!-- Bouton pour afficher les détails de l'ordinateur -->
+                        <button type="button" class="btn btn-outline-success btn-sm" [routerLink]="[ordinateur.id]">
                             <mat-icon>visibility</mat-icon>
                         </button>
-
-                        
                     </td>
-
-
                 </tr>
             </tbody>
         </table>
 
-
-
-
-
-        <!-- Modal -->
+        <!-- Modal d'ajout d'ordinateur -->
         <div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-lg modal-dialog modal-dialog-centered  modal-dialog-scrollable">
+            <div class="modal-lg modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Formulaire d'Ajout Ordinateur</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form [formGroup]="ordinateurForm" (ngSubmit)="onSubmit()" class="row" >
+                        <!-- Formulaire d'ajout d'ordinateur -->
+                        <form [formGroup]="ordinateurForm" (ngSubmit)="onSubmit()" class="row">
                             <div class="mb-3 col-6">
-                                <label for="bureau" class="form-label">Bureeau</label>
-                                <input type="text" class="form-control" id="bureau"
-                                    formControlName="bureau" placeholder="Bureau 1">
+                                <label for="bureau" class="form-label">Bureau</label>
+                                <input type="text" class="form-control" id="bureau" formControlName="bureau"
+                                    placeholder="Bureau 1">
                             </div>
                             <div class="mb-3 col-6">
                                 <label for="proprietaire" class="form-label">Propriétaire</label>
-                                <input type="text" class="form-control" id="proprietaire"
-                                    formControlName="proprietaire" placeholder="Moussa">
+                                <input type="text" class="form-control" id="proprietaire" formControlName="proprietaire"
+                                    placeholder="Moussa">
                             </div>
                             <div class="mb-3 col-6">
                                 <label for="typeSE" class="form-label">Type SE</label>
-                                <input type="text" class="form-control" id="typeSE"
-                                    formControlName="typeSE" placeholder="Linux">
+                                <input type="text" class="form-control" id="typeSE" formControlName="typeSE"
+                                    placeholder="Linux">
                             </div>
                             <div class="mb-3 col-6">
                                 <label for="dateInstall" class="form-label">Date Installation</label>
-                                <input type="date" class="form-control" id="dateInstall"
-                                    formControlName="dateInstall">
+                                <input type="date" class="form-control" id="dateInstall" formControlName="dateInstall">
                             </div>
                             <div class="mb-3 col-12">
                                 <label for="caracteristiques" class="form-label">Caractéristique</label>
                                 <input type="text" class="form-control" id="caracteristiques"
                                     formControlName="caracteristiques" placeholder="Intel 333, 8G RAM ..">
                             </div>
-                            
                             <div class="d-grid gap-2 col-6 mx-auto">
-                                <button type="submit" class="btn btn-primary" [disabled]="ordinateurForm.invalid"
-                                    >Enregistrer</button>
+                                <!-- Bouton d'enregistrement du formulaire -->
+                                <button type="submit" class="btn btn-primary" [disabled]="ordinateurForm.invalid">
+                                    Enregistrer
+                                </button>
                             </div>
-
-
-
-
                         </form>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
+</div>

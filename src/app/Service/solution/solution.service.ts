@@ -12,22 +12,41 @@ export class SolutionService {
 
   constructor(private http: HttpClient) { }
 
-
+  /**
+   * Récupère toutes les solutions depuis l'API.
+   * @returns Observable<Solution[]> Un tableau d'objets Solution.
+   */
   getSolutions(): Observable<Solution[]> {
     return this.http.get<Solution[]>(this.apiUrl);
   }
-  getSolutionById(id:any): Observable<Solution[]> {
+
+  /**
+   * Récupère une solution spécifique par son identifiant depuis l'API.
+   * @param id L'identifiant de la solution à récupérer.
+   * @returns Observable<Solution[]> Un tableau d'objets Solution correspondant à l'identifiant donné.
+   */
+  getSolutionById(id: any): Observable<Solution[]> {
     let params = new HttpParams()
-      .set('id', id)
-    return this.http.get<Solution[]>(`${this.apiUrl}/id`,{params});
+      .set('id', id);
+    return this.http.get<Solution[]>(`${this.apiUrl}/${id}`, { params });
   }
 
-  getSolutionByProbleme(id:any): Observable<Solution[]> {
+  /**
+   * Récupère toutes les solutions liées à un problème spécifique depuis l'API.
+   * @param id L'identifiant du problème pour lequel récupérer les solutions.
+   * @returns Observable<Solution[]> Un tableau d'objets Solution liés au problème donné.
+   */
+  getSolutionByProbleme(id: any): Observable<Solution[]> {
     let params = new HttpParams()
-      .set('idP', id)
-    return this.http.get<Solution[]>(`${this.apiUrl}/problemeId`,{params});
+      .set('idP', id);
+    return this.http.get<Solution[]>(`${this.apiUrl}/problemeId`, { params });
   }
 
+  /**
+   * Ajoute une nouvelle solution à l'API.
+   * @param solution Les données de la solution à ajouter.
+   * @returns Observable<Solution> La solution ajoutée.
+   */
   addSolution(solution: any): Observable<Solution> {
     return this.http.post<Solution>(this.apiUrl, solution);
   }

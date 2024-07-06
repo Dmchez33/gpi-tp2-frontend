@@ -1,8 +1,18 @@
+<!-- 
+  Composant principal qui gère la barre d'outils et la navigation de l'application.
+  Affiche différentes sections en fonction des conditions isLoginPage, isInfoService et isAdmin.
+-->
 <ng-container *ngIf="!isLoginPage">
+  
+  <!-- Barre d'outils supérieure avec un bouton de menu et un menu utilisateur -->
   <mat-toolbar color="primary" class="d-flex justify-content-between">
+    
+    <!-- Bouton de menu pour ouvrir/fermer le panneau latéral -->
     <button mat-icon-button aria-label="Menu icon" (click)="toggleMenu()">
       <mat-icon>menu</mat-icon>
     </button>
+    
+    <!-- Menu utilisateur avec le rôle de l'utilisateur actuel -->
     <div class="dropdown">
       <div class="d-flex flex-column align-items-center text-center" data-bs-toggle="dropdown" aria-expanded="false">
         <button mat-icon-button aria-label="Menu icon">
@@ -12,34 +22,47 @@
           <span class="name-user">{{currentUser?.role}}</span>
         </div>
       </div>
+      
+      <!-- Menu déroulant avec l'option de déconnexion -->
       <ul class="dropdown-menu">
         <li><button class="dropdown-item" type="button" (click)="logout()">Déconnexion</button></li>
       </ul>
     </div>
   </mat-toolbar>
-
+  
+  <!-- Conteneur du panneau latéral et du contenu principal -->
   <mat-sidenav-container autosize>
+    
+    <!-- Panneau latéral avec la liste des liens de navigation -->
     <mat-sidenav [opened]="true" [ngClass]="!isCollapsed ? 'expanded' : ''" [mode]="isMobile ? 'over' : 'side'"
       [opened]="!isMobile">
       <mat-nav-list>
+        
+        <!-- Lien vers la page d'accueil si l'utilisateur est un service informatique -->
         <a mat-list-item routerLink="Accueil" routerLinkActive="active" *ngIf="isInfoService">
           <span class="entry">
             <img src="../assets/Home.png" alt="home" />
             <span *ngIf="!isCollapsed">Accueil</span>
           </span>
         </a>
+        
+        <!-- Lien vers la liste des ordinateurs -->
         <a mat-list-item routerLink="Ordinateur">
           <span class="entry">
             <img src="../assets/ordinateur.png" width="25" height="26" alt="ordinateur" />
             <span *ngIf="!isCollapsed">Ordinateurs</span>
           </span>
         </a>
+        
+        <!-- Lien vers la gestion des problèmes -->
         <a mat-list-item routerLink="Probleme">
           <span class="entry">
             <img src="../assets/depannage.png" width="25" height="26" alt="ordinateur" />
             <span *ngIf="!isCollapsed">Problèmes</span>
           </span>
         </a>
+        
+        <!-- Lien vers la gestion des utilisateurs si l'utilisateur est un administrateur -->
         <a mat-list-item routerLink="Utilisateur" routerLinkActive="active" *ngIf="isAdmin">
           <span class="entry">
             <img src="../assets/Home.png" alt="home" />
@@ -48,12 +71,15 @@
         </a>
       </mat-nav-list>
     </mat-sidenav>
+    
+    <!-- Contenu principal affiché en fonction du routage -->
     <mat-sidenav-content>
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </ng-container>
 
+<!-- Conteneur alternatif pour afficher le contenu de la page de connexion -->
 <ng-container *ngIf="isLoginPage">
   <router-outlet></router-outlet>
 </ng-container>

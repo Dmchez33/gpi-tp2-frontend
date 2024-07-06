@@ -1,60 +1,59 @@
 <div class="container mt-3">
+    <!-- Première section avec le délai moyen d'intervention -->
     <div class="d-flex content justify-content-between">
-        <div class="st1  rounded text-center d-flex flex-column align-items-center">
+        <div class="st1 rounded text-center d-flex flex-column align-items-center">
             <div class="icon">
                 <img src="../../../assets/deadline.png" alt="" srcset="">
             </div>
             Délai Moyen d'Intervention /minutes
-            <div class="nber">{{ delaiMoyenIntervention }} </div>
+            <div class="nber">{{ delaiMoyenIntervention }} </div> <!-- Affiche le délai moyen d'intervention -->
         </div>
 
+        <!-- Deuxième section avec le graphique des problèmes par système d'exploitation -->
         <div class="chart mx-3">
             <h4 class="text-center">Problèmes par Système d'Exploitation</h4>
-            <ngx-charts-bar-vertical [results]="nombreProblemesParSE" [xAxis]="true" [yAxis]="true" [legend]="true"
-                [view]="view" [showXAxisLabel]="true" [showYAxisLabel]="true" [xAxisLabel]="'Système d\'Exploitation'"
-                [yAxisLabel]="'Nombre de Problèmes'">
+            <!-- Données à afficher dans le graphique -->
+            <ngx-charts-bar-vertical 
+                [results]="nombreProblemesParSE" 
+                [xAxis]="true" [yAxis]="true" [legend]="true"
+                [view]="view" [showXAxisLabel]="true" [showYAxisLabel]="true"
+                [xAxisLabel]="'Système d\'Exploitation'" [yAxisLabel]="'Nombre de Problèmes'">
             </ngx-charts-bar-vertical>
         </div>
-
     </div>
-    <div class="content mt-4">
 
+    <!-- Troisième section avec le tableau des problèmes par fréquence -->
+    <div class="content mt-4">
         <div class="d-flex">
             <div class="table">
                 <table class="table table-bordered mat-elevation-z8 table-sm">
                     <thead class="table-dark">
                         <tr>
-
                             <th>Problème</th>
                             <th>Fréquence</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <!-- Boucle sur frequenceProblemes pour afficher chaque problème et sa fréquence -->
                         <tr *ngFor="let problemeFr of frequenceProblemes">
                             <td>{{ problemeFr.name }}</td>
                             <td>{{ problemeFr.value }}</td>
                         </tr>
                     </tbody>
                 </table>
-
-
             </div>
 
+            <!-- Quatrième section avec le graphique des problèmes par fréquence d'apparition -->
             <div class="chart w-100">
                 <h4 class="text-center mb-3">Problèmes par Fréquences d'Apparition</h4>
-
-                <ngx-charts-bar-vertical [results]="frequenceProblemes" [customColors]="colorScheme" [view]="view"
-                    [showGridLines]="true" [xAxis]="true" [yAxis]="true" [legend]="true" [showXAxisLabel]="true"
+                <!-- Données à afficher dans le graphique -->
+                <ngx-charts-bar-vertical 
+                    [results]="frequenceProbleme" 
+                    [customColors]="colorScheme" [view]="view" [showGridLines]="true"
+                    [xAxis]="true" [yAxis]="true" [legend]="true" [showXAxisLabel]="true"
                     [showYAxisLabel]="true" [xAxisLabel]="'Problème'" [yAxisLabel]="'Fréquence'">
                 </ngx-charts-bar-vertical>
             </div>
-
-
         </div>
-
     </div>
-
-
-
-
 </div>

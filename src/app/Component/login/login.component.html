@@ -1,19 +1,33 @@
-<div class="d-flex justify-content-center align-items-center  body">
+<div class="d-flex justify-content-center align-items-center body">
+    <!-- Contenu centré verticalement et horizontalement -->
     <div class="d-flex flex-column align-items-center">
+        <!-- Conteneur principal avec alignement en colonne -->
         <h2 class="h2-style mb-4">Bienvenue sur la page de connexion</h2>
+        <!-- Titre principal de la page -->
+
         <div class="login-container mt-4">
-            <h2>Connexion</h2>
+            <!-- Conteneur pour le formulaire de connexion -->
+            <h2>Connexion</h2> <!-- Titre du formulaire -->
+
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <!-- Formulaire avec liaison à formGroup "loginForm" et action onSubmit() -->
+
                 <div>
+                    <!-- Champ de saisie pour le nom d'utilisateur -->
                     <input id="username" formControlName="username" placeholder="Nom d'utilisateur">
                 </div>
+
                 <div>
+                    <!-- Champ de saisie pour le mot de passe avec type=password -->
                     <input id="password" type="password" formControlName="password" placeholder="Mot de passe">
                 </div>
+
                 <div *ngIf="errorMessage" class="error-message">
+                    <!-- Message d'erreur conditionnel affiché s'il y a une erreur de connexion -->
                     {{ errorMessage }}
                 </div>
-                <button type="submit">Se connecter</button>
+
+                <button type="submit">Se connecter</button> <!-- Bouton de soumission du formulaire -->
             </form>
         </div>
     </div>
